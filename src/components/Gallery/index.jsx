@@ -17,11 +17,22 @@ export default function Gallery() {
     setItens(novasFotos);
   };
 
+  const favoritar = (id) => {
+    setItens(
+      photos.map((photo) => {
+        if (photo.id === id) {
+          photo.favorita = !photo.favorita;
+        }
+        return photo;
+      })
+    );
+  };
+
   return (
     <section className={styles.galeria}>
       <h2>Navegue pela galeria</h2>
       <Tags tags={tags} filtraFotos={filtraFotos} setItens={setItens} />
-      <Cards photos={itens} styles={styles} />
+      <Cards photos={itens} styles={styles} favoritar={favoritar} />
     </section>
   );
 }

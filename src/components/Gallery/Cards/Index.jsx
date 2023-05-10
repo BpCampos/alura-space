@@ -1,8 +1,9 @@
-import React from "react";
+import { useState } from "react";
 import open from "./open.png";
 import favorito from "./favorito.png";
+import { MdFavorite } from "react-icons/md";
 
-export default function Cards({ photos, styles }) {
+export default function Cards({ photos, styles, favoritar }) {
   return (
     <ul className={styles.galeria__cards}>
       {photos.map((photo) => {
@@ -13,7 +14,11 @@ export default function Cards({ photos, styles }) {
             <div>
               <p>{photo.creditos}</p>
               <span>
-                <img src={favorito} alt="Ícone de coração" />
+                {photo.favorita ? (
+                  <MdFavorite onClick={() => favoritar(photo.id)} color="#ff0000" size={23.5} />
+                ) : (
+                  <img src={favorito} onClick={() => favoritar(photo.id)} />
+                )}
                 <img src={open} alt="Ícone para abrir modal" />
               </span>
             </div>
